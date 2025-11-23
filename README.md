@@ -1,402 +1,435 @@
-# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M2
-# IAPR-2- Module 2 - FoC
-## 3. Implementation of programs using conditional statements.
-## 4. Implementation of programs using various control statements.
-# Ex.No:6
-  Build a C program to input a student’s marks in three subjects (Math, Science, and English). Calculate the average marks and determine the grade using nested if-else statements with safe floating-point comparisons based on the following grading criteria:
-    
-  A: 90 and above
-  
-  B: 75 to 89.99
-  
-  C: 50 to 74.99
-  
-  F: below 50
-  
-  The program should display the average marks up to two decimal places and the corresponding grade. 
-  
-# Date : 17.09.2025
+# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M5
+# IAPR-5- Module 5 - FoC
+## 9. Implementation of recursion.
+## 10. Implementation of programs using pointer arithmetic.
+# Ex.No:21
+  Implement a C program to demonstrate call by value and call by reference by swapping two integers using separate functions.
+# Date : 
 # Aim:
- To build a C program that receives inputs for a student’s marks in three subjects, calculates the average, and determines the grade using nested if-else statements with safe floating-point comparisons.
+ To implement a C program that illustrates the difference between call by value and call by reference by swapping two integer variables using two separate functions.
 # Algorithm:
 ### Step 1:
   Start
 ### Step 2: 
   Include the standard input-output library: #include<stdio.h>.
-### Step 3: 
-  Declare float variables math, science, english to store marks of each subject.
+### Step 3:
+  Declare two functions:
+  - `swapv(int, int)` for swapping using call by value  
+  - `swapr(int *, int *)` for swapping using call by reference
 ### Step 4: 
-  Declare a float variable average to store the average marks.
+  In the `main()` function, declare two integer variables `a` and `b` and initialize them with values (e.g., 10 and 20).
 ### Step 5: 
-  Prompt the user to enter marks for Math, Science, and English.
+  Print the values of `a` and `b` before calling `swapv()`.
 ### Step 6: 
-  Read the input marks.
+  Call the function `swapv(a, b)` and print the values of `a` and `b` after the function call to show that call by value does not change the original values.
 ### Step 7: 
-  Calculate the average marks using the formula:
-   
-  average=(math + science + english​)/3.0f
+  Print the values of `a` and `b` before calling `swapr()`.
 ### Step 8: 
-  Check if average is greater than or equal to 90.0f
+  Call the function `swapr(&a, &b)` using the addresses of `a` and `b`.
+### Step 9: 
+  Print the values of `a` and `b` after the `swapr()` function call to show that call by reference successfully swaps the original values.
+### Step 10: 
+  Inside `swapv(x, y)` function:
+  - **Step 10.1:** Swap the values of `x` and `y` using a temporary variable.  
+  - **Step 10.2:** Print the swapped values (formal parameters).
+### Step 11: 
+  Inside `swapr(*x, *y)` function:
+  - **Step 11.1:** Swap the values pointed to by `x` and `y`.  
+  - **Step 11.2:** Print the swapped values (affects actual parameters).
+### Step 12: 
+  Stop
+# Program:
 
-  If yes, print Grade A.
+#include <stdio.h>
 
-  Else, proceed to Step 9.  
+void swapv(int x, int y)  
+{
+    int temp;
+    
+    temp = x;
+    
+    x = y;
+    
+    y = temp;
+    
+    printf("\nInside swapv (Call by Value): x = %d, y = %d", x, y);
+    
+}
+
+void swapr(int *x, int *y)  
+
+{
+
+    int temp;
+    
+    temp = *x;
+    
+    *x = *y;
+    
+    *y = temp;
+    
+    printf("\nInside swapr (Call by Reference): x = %d, y = %d", *x, *y);
+    
+}
+
+int main()
+
+{
+    int a = 10, b = 20;
+
+    printf("Before swapv: a = %d, b = %d\n", a, b);
+    
+    swapv(a, b);
+    
+    printf("\nAfter swapv: a = %d, b = %d\n", a, b);
+
+    printf("\nBefore swapr: a = %d, b = %d\n", a, b);
+    
+    swapr(&a, &b);
+    
+    printf("\nAfter swapr: a = %d, b = %d\n", a, b);
+
+    return 0;
+}
+
+# Output:
+
+<img width="995" height="608" alt="Screenshot 2025-11-19 152501" src="https://github.com/user-attachments/assets/3933c46e-0fd5-4a94-9fc6-988eb23e8c84" />
+
+
+# Result: 
+  Thus, the program was implemented and executed successfully, and the required output was obtained.
+
+
+# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M5
+# IAPR-5- Module 5 - FoC
+# Ex.No:22
+  Implement a C program to generate the Fibonacci series using a recursive function. The program should accept a positive integer n and display the first n terms of the Fibonacci sequence.
+# Date : 
+# Aim:
+  To implement a C program that uses a recursive function to generate and display the Fibonacci series for a given number of terms.
+# Algorithm:
+### Step 1:
+  Start
+### Step 2: 
+  Include the standard input-output library: #include<stdio.h>.
+### Step 3:
+  Declare a recursive function `fibo(int x)` that returns the Fibonacci number at position `x`.  
+### Step 4:
+  In the `main()` function, declare variables `n` and `i`.  
+### Step 5:
+  Prompt the user to enter a positive integer `n`.  
+### Step 6:
+  Read the value of `n`.  
+### Step 7:
+  Display a message indicating that the Fibonacci series of `n` terms will be printed.  
+### Step 8:
+  Use a `for` loop from `i = 0` to `i < n` to:  
+  - **Step 8.1:** Call the recursive function `fibo(i)`  
+  - **Step 8.2:** Print the returned Fibonacci value  
 ### Step 9:
-  Check if average is greater than or equal to 75.0f
-
-  If yes, print Grade B.
-
-  Else, proceed to Step 10.
+ Define the recursive function `fibo(x)` as follows:  
+ - **Step 9.1:** If `x == 0` or `x == 1`, return `x`.  
+ - **Step 9.2:** Otherwise, return `fibo(x - 1) + fibo(x - 2)`.  
 ### Step 10:
-  Check if average is greater than or equal to 50.0f
+  Stop
+# Program:
 
-  If yes, print Grade C.
+#include <stdio.h>
 
-  Else, print Grade F.
+int fibo(int x)   
+{
+    if (x == 0 || x == 1)
+    
+        return x;
+        
+    else
+    
+        return fibo(x - 1) + fibo(x - 2);
+}
+
+int main()
+
+{
+
+    int n, i;
+
+    printf("Enter the number of terms: ");
+    
+    scanf("%d", &n);
+
+    printf("Fibonacci series of %d terms:\n", n);
+
+    for (i = 0; i < n; i++)
+    
+    {
+    
+        printf("%d ", fibo(i));
+        
+    }
+
+    return 0;
+}
+
+# Output:
+
+<img width="995" height="328" alt="Screenshot 2025-11-19 152606" src="https://github.com/user-attachments/assets/19f7f2db-7205-41bb-ac71-b9a29a03258b" />
+
+
+# Result: 
+Thus, the program was implemented and executed successfully, and the required output was obtained.
+
+
+# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M5
+# IAPR-5- Module 5 - FoC
+# Ex.No:23
+   Implement a C program to demonstrate recursion by printing a sequence of even or odd numbers from a given lower limit to an upper limit, with each recursive call progressing by 2.
+# Date : 
+# Aim:
+  To implement a C program that uses a recursive function to print even or odd numbers in a specified range based on the starting value provided by the user.
+# Algorithm:
+### Step 1:
+  Start
+### Step 2: 
+  Include the standard input-output library: #include<stdio.h>. 
+### Step 3:
+  Declare a recursive function `printEvenOdd(int cur, int limit)` to print numbers from `cur` to `limit` with a step of 2.
+### Step 4:
+  In the `main()` function, declare two integer variables: `lowerLimit` and `upperLimit`.
+### Step 5:
+  Prompt the user to enter the lower limit of the range.
+### Step 6:
+  Read and store the lower limit.
+### Step 7:
+  Prompt the user to enter the upper limit of the range.
+### Step 8:
+  Read and store the upper limit.
+### Step 9:
+  Display a message indicating that the even/odd numbers in the given range will be printed.
+### Step 10:
+  Call the recursive function `printEvenOdd(lowerLimit, upperLimit)`.
+### Step 11:
+  Inside the function `printEvenOdd(cur, limit)`:
+  - **Step 11.1:** If `cur > limit`, terminate the recursion.  
+  - **Step 11.2:** If `cur == limit`, print the value without a trailing comma.  
+  - **Step 11.3:** Otherwise, print the current value followed by a comma.  
+  - **Step 11.4:** Recursively call `printEvenOdd(cur + 2, limit)` to print the next number.
+### Step 12:
+  Stop
+# Program:
+
+#include <stdio.h>
+
+void printEvenOdd(int cur, int limit)
+{
+    if (cur > limit)
+    
+        return;
+
+    if (cur == limit)
+    
+        printf("%d", cur);
+        
+    else
+    
+        printf("%d, ", cur);
+
+    printEvenOdd(cur + 2, limit);
+    
+}
+
+int main()
+
+{
+    int lowerLimit, upperLimit;
+
+    printf("Enter the lower limit: ");
+    
+    scanf("%d", &lowerLimit);
+
+    printf("Enter the upper limit: ");
+    
+    scanf("%d", &upperLimit);
+
+    printf("The sequence of even/odd numbers in the given range:\n");
+
+    printEvenOdd(lowerLimit, upperLimit);
+
+    return 0;
+}
+
+# Output:
+
+<img width="811" height="251" alt="Screenshot 2025-11-19 152801" src="https://github.com/user-attachments/assets/4dd5c61e-6fa6-42fc-a7bd-45625fb45965" />
+
+
+# Result: 
+Thus, the program was implemented and executed successfully, and the required output was obtained.
+
+
+# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M5
+# IAPR-5- Module 5 - FoC
+# Ex.No:24
+   Implement a C program that dynamically allocates memory using calloc(), accepts integer inputs from the user, computes their sum, and prints the sum.
+# Date : 
+# Aim:
+  To implement a C program that dynamically allocates memory for an array of integers using calloc(), accepts elements from the user, computes their sum, and displays the sum.
+# Algorithm:
+### Step 1:
+  Start
+### Step 2: 
+  Include the standard input-output library: #include<stdio.h>. 
+### Step 3:
+  a. Declare a pointer `ptr` to `int`.  
+  b. Declare integers `n`, `i`, and `sum` (initialize `sum = 0`).
+### Step 4:
+  Read the integer `n` from the user (the number of integers to be stored).
+### Step 5:
+  Use the `calloc()` function to allocate memory for `n` integers:  
+  `ptr = calloc(n, sizeof(int))`
+### Step 6:
+  If `ptr` is not `NULL`, continue to the next step; otherwise, memory allocation failed (the program exits).
+### Step 7:
+  For each `i` from `0` to `n - 1`:  
+  a. Read an integer from the user.  
+  b. Store it at memory location `ptr + i`.
+### Step 8:
+  For each `i` from `0` to `n - 1`:  
+  a. Access the value stored at `ptr + i`.  
+  b. Add it to `sum`.
+### Step 9:
+  Print the value of `sum`.
+### Step 10:
+  Call `free(ptr);` to release the memory allocated by `calloc()`.
 ### Step 11:
   Stop
 # Program:
-```
-#include <stdio.h>
-#include <math.h>
 
-int main() {
-    float m1, m2, m3, avg;
-    const float EPS = 0.0001f;
-
-    printf("Enter marks for Subject 1: ");
-    scanf("%f", &m1);
-
-    printf("Enter marks for Subject 2: ");
-    scanf("%f", &m2);
-
-    printf("Enter marks for Subject 3: ");
-    scanf("%f", &m3);
-
-    avg = (m1 + m2 + m3) / 3.0f;
-
-    printf("\nAverage Marks = %.2f\n", avg);
-    printf("Grade: ");
-
-    if (avg >= 90.0f - EPS) {
-        printf("A\n");
-    } else {
-        if (avg >= 80.0f - EPS) {
-            printf("B\n");
-        } else {
-            if (avg >= 70.0f - EPS) {
-                printf("C\n");
-            } else {
-                if (avg >= 60.0f - EPS) {
-                    printf("D\n");
-                } else {
-                    printf("F\n");
-                }
-            }
-        }
-    }
-
-    return 0;
-}
-
-```
-# Output:
-<img width="536" height="370" alt="image" src="https://github.com/user-attachments/assets/0596e011-0fa7-4d28-b97d-ce378f488260" />
-
-# Result: 
-Thus, the program was implemented and executed successfully, and the required output was obtained.
-
-# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M2
-# IAPR-2- Module 2 - FoC
-# Ex.No:7
-  Develop a C program to display the multiplication table of a given number (15) up to 10.
-# Date : 17.09.2025
-# Aim:
- To develop a C program that prints the multiplication table of the number 15 up to 10 using a for loop.
-# Algorithm:
-### Step 1:
-  Start
-### Step 2: 
-  Include the standard input-output library: #include<stdio.h>.
-### Step 3: 
-  Declare an integer variable number and initialize it with 15.
-### Step 4: 
-  Declare another integer variable i to use as a loop counter.
-### Step 5: 
-  Use a for loop to iterate from i = 1 to i = 10.
-  
-  In each iteration:
-  
-  a. Multiply number by i.
-  
-  b. Print the result in the format: number x i = result.
-### Step 6: 
-  Stop
-
-# Program:
-```
 #include <stdio.h>
 
-int main() {
-    int num = 15;
-    int i;
+#include <stdlib.h>
 
-    for (i = 1; i <= 10; i++) {
-        printf("%d x %d = %d\n", num, i, num * i);
-    }
+int main()
 
-    return 0;
-}
+{
 
-```
-# Output:
-<img width="471" height="502" alt="image" src="https://github.com/user-attachments/assets/c9517417-a0a0-45dc-bd57-c82720022712" />
+    int *ptr;
+    
+    int n, i, sum = 0;
 
-# Result: 
-Thus, the program was implemented and executed successfully, and the required output was obtained.
-
-# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M2
-# IAPR-2- Module 2 - FoC
-# Ex.No:8
-  Develop a C program to check whether a given number is prime or not.
-# Date : 19.09.2025
-# Aim:
- To develop a C program that determines whether an input number is a prime number using a while loop.
-# Algorithm:
-### Step 1:
-  Start
-### Step 2: 
-  Include the standard input-output library: #include<stdio.h>.
-### Step 3: 
-  Declare integer variables:
-  
-  n to store the number entered by the user.
-  
-  i to use as a counter (initialize to 2).
-  
-  f as a flag to indicate whether the number is divisible (initialize to 0).
-### Step 4: 
-  Read the value of n from the user.
-### Step 5: 
-  Use a while loop to iterate while i <= n-1:
-  
-  Check if n % i == 0:
-
-  If yes, set f = 1 (number is not prime) and break the loop.
-  
-  Increment i by 1.
-### Step 6: 
-  After the loop:
-  
-  If f == 0, print that the number is prime.
-  
-  Else, print that the number is not prime.
-### Step 7:   
-  Stop
-# Program:
-```
-#include <stdio.h>
-
-int main() {
-    int n, i, isPrime = 1;
-
-    printf("Enter a number: ");
+    printf("Enter the number of integers: ");
+    
     scanf("%d", &n);
 
-    if (n <= 1) {
-        isPrime = 0;
-    } else {
-        for (i = 2; i <= n / 2; i++) {
-            if (n % i == 0) {
-                isPrime = 0;
-                break;
-            }
-        }
+    ptr = calloc(n, sizeof(int));
+
+    if (ptr == NULL)
+    
+    {
+        printf("Memory allocation failed.\n");
+        
+        return 0;
     }
 
-    if (isPrime == 1) {
-        printf("%d is a prime number.\n", n);
-    } else {
-        printf("%d is not a prime number.\n", n);
+    printf("Enter %d integers:\n", n);
+    
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", (ptr + i));
     }
+
+    for (i = 0; i < n; i++)
+    {
+        sum += *(ptr + i);
+    }
+
+    printf("Sum of the entered integers = %d\n", sum);
+
+    free(ptr);
 
     return 0;
 }
 
-```
-
 # Output:
-<img width="578" height="232" alt="image" src="https://github.com/user-attachments/assets/8e37f780-992d-427a-9a6b-3105f173b440" />
+
+<img width="818" height="294" alt="Screenshot 2025-11-19 152917" src="https://github.com/user-attachments/assets/258d3184-cc85-4a1c-a023-b9167fdbaec4" />
+
 
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
 
-# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M2
-# IAPR-2- Module 2 - FoC
-# Ex.No:9
-  Generate the C code to display the pattern below.  
- ``` 
- 12345  
- 2   4  
- 3   3  
- 4   2  
- 54321
- ```
-# Date : 19.09.2025
+# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M5
+# IAPR-5- Module 5 - FoC
+# Ex.No:25
+   Implement a C program that reads a set of integers into an array and displays the array elements using a user-defined function.
+# Date : 
 # Aim:
- To build a C program that prints the required numeric pattern for a given value of n using nested loops.
+  To implement a C program that reads integers into an array and displays the elements using a user-defined function.
 # Algorithm:
 ### Step 1:
   Start
 ### Step 2: 
-  Include the standard input-output library: #include<stdio.h>.
-### Step 3: 
-  Declare variables i, j, n, and k.
-### Step 4: 
-  Read the value of n from the user.
-### Step 5: 
-  Set i = 1.
-### Step 6:  
-  Repeat the following steps until i > n:
-  
-  Step 6.1: For j from i to n, print j if i == 1 or j == i, otherwise print a space.
-  
-  Step 6.2: Set k = j - 2.
-  
-  Step 6.3: For j from 1 to i - 1, print k if i == n or j == i - 1, otherwise print a space.
-  
-  Step 6.4: Decrease k after each print.
-  
-  Step 6.5: Move to the next line.
-  
-### Step 7: 
-  Increase i and repeat Step 6.
-### Step 8:   
+  Include the standard input-output library: #include<stdio.h>. 
+### Step 3:
+  Declare the function prototype: `void displayArray(int *arr, int size);`
+### Step 4:
+  In the `main()` function, declare an integer array of size 5 and a loop variable.
+### Step 5:
+  Prompt the user to enter the required number of integers.
+### Step 6:
+  Read the integers from the user and store them in the array using a loop.
+### Step 7:
+  Call the `displayArray` function, passing the array and its size as arguments.
+### Step 8:
+  Define the function `displayArray(int *arr, int size)` to print the array elements:  
+  - Loop through the array using either pointer arithmetic (`*(arr + i)`) or array indexing (`arr[i]`).  
+  - Print each element.
+### Step 9:
+  Return to the `main()` function after displaying the array.
+### Step 10:
   Stop
 # Program:
-```
+
 #include <stdio.h>
 
+void displayArray(int *arr, int size);
+
 int main() {
-    int i, j;
 
-    for (j = 1; j <= 5; j++)
-        printf("%d", j);
-    printf("\n");
-
+    int arr[5];
     
-    for (i = 2; i <= 4; i++) {
-        for (j = 1; j <= 5; j++) {
-            if (j == 1)         
-                printf("%d", i);
-            else if (j == 5)    
-                printf("%d", 6 - i);
-            else                 
-                printf(" ");
-        }
-        printf("\n");
+    int i;
+
+    printf("Enter 5 integers:\n");
+
+    for (i = 0; i < 5; i++) {
+    
+        scanf("%d", &arr[i]);
     }
 
-    
-    for (j = 5; j >= 1; j--)
-        printf("%d", j);
-    printf("\n");
+    displayArray(arr, 5);
 
     return 0;
 }
-```
+
+void displayArray(int *arr, int size) {
+
+    int i;
+    
+    printf("Array elements are:\n");
+
+    for (i = 0; i < size; i++) {
+    
+        printf("%d ", *(arr + i));
+        
+    }
+}
+
 # Output:
-<img width="460" height="335" alt="image" src="https://github.com/user-attachments/assets/4867f3b5-b1f3-497e-848c-cb3fd92c767e" />
+
+<img width="805" height="280" alt="Screenshot 2025-11-19 153048" src="https://github.com/user-attachments/assets/f4cd0bb4-80a1-4f21-ac0c-d410c3ccf3cc" />
+
 
 # Result: 
-  Thus, the program was implemented and executed successfully, and the required output was obtained.
-
-  
-# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M2
-# IAPR-2- Module 2 - FoC
-# Ex.No:10
-  Generate the C code to display the pattern below.  
-  
- 0
- 
- 7  0  7
- 
- 6  7  0  7  6
- 
- 5  6  7  0  7  6  5
- 
- 4  5  6  7  0  7  6  5  4
- 
- 3  4  5  6  7  0  7  6  5  4  3
- 
- 2  3  4  5  6  7  0  7  6  5  4  3  2
- 
- 1  2  3  4  5  6  7  0  7  6  5  4  3  2  1
-# Date: 19.09.2025
-# Aim: 
-  To formulate a C program to print a symmetric numeric pattern in which each row contains an increasing sequence of numbers from the row value up to 7, followed by 0 in the center, and then a decreasing sequence of numbers back to the row value.
-# Algorithm:
-### Step 1:
-  Start
-### Step 2: 
-  Include the standard input-output library: #include<stdio.h>.
-### Step 3: 
-  Declare integer variables i and j.
-### Step 4: 
-  Print 0 on the first line.
-### Step 5:
-  Set i = 7.
-### Step 6:
-   Repeat Steps 6.1 to 6.4 while `i >= 1`:
-
-   Step 6.1: For `j = i` to `7`, print `j`.
-
-   Step 6.2: Print `0` in the center.
-
-   Step 6.3: For `j = 7` down to `i`, print `j`.
-
-   Step 6.4: Move to the next line.
-### Step 7:
-  Decrease i by 1 and go back to Step 6.
-### Step 8:
-  Stop
-# Program:
-```
-#include <stdio.h>
-
-int main() {
-    int i, j;
-
-    printf("0\n");
-
-    i = 7;
-
-    while (i >= 1) {
-        for (j = i; j <= 7; j++) {
-            printf("%d ", j);
-        }
-
-        printf("0 ");
-
-        for (j = 7; j >= i; j--) {
-            printf("%d ", j);
-        }
-
-        printf("\n");
-
-        i--;
-    }
-
-    return 0;
-}
-
-```
-
-# Output:
-<img width="549" height="426" alt="image" src="https://github.com/user-attachments/assets/79f50cd4-c21f-4ebe-8303-72f1ed48e207" />
-
-
-# Result:
-  Thus, the program was implemented and executed successfully, and the required output was obtained.
-
+Thus, the program was implemented and executed successfully, and the required output was obtained.
